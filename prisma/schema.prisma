@@ -1,7 +1,6 @@
-// prisma/schema.prisma
-
 generator client {
-  provider = "prisma-client-js"
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
 }
 
 datasource db {
@@ -9,13 +8,13 @@ datasource db {
 }
 
 model Task {
-  id          String   @id @default(cuid())
+  id          String    @id @default(cuid())
   title       String
   description String?
-  status      String   @default("TODO")
+  status      String    @default("TODO")
   dueDate     DateTime?
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
 
   @@index([status])
   @@index([dueDate])
